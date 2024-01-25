@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Conversion Calculator | Measure It Up!</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <h1>Measurement Calculator</h1>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="ConversionPage.html">Learn About Conversions</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <h2>Convert Your Measurements with Ease!</h2>
+  <p>Enter your value and choose the units to convert. Click "Calculate" and see the magic happen!</p>
+
+  <form id="measure-form">
+    <label for="input-value">Value:</label>
+    <input type="number" id="input-value" required>
+
+    <label for="from-units">From Units:</label>
+    <select id="from-units" required>
+      <option value="meters">Meters</option>
+      <option value="kilometers">Kilometers</option>
+      <option value="feet">Feet</option>
+      <option value="miles">Miles</option>
+    </select>
+
+    <label for="to-units">To Units:</label>
+    <select id="to-units" required>
+      <option value="meters">Meters</option>
+      <option value="kilometers">Kilometers</option>
+      <option value="feet">Feet</option>
+      <option value="miles">Miles</option>
+    </select>
+
+    <button onclick="calculateConversion()">Calculate</button>
+
+    <p id="result"></p>
+  </form>
+
+</main>
+
+<footer>
+  <p><i>&copy; 2024 Aqmarafiq</i></p>
+</footer>
+
+<script>
+  function calculateConversion() {
+  var inputValue = document.getElementById("input-value").value;
+  var fromUnits = document.getElementById("from-units").value;
+  var toUnits = document.getElementById("to-units").value;
+
+  if (isNaN(inputValue)) {
+    alert("Please enter a valid number for the value.");
+    return;
+  }
+
+  var result = 0;
+  switch (fromUnits + toUnits) {
+    case "metersfeet":
+      result = inputValue * 3.28084;
+      break;
+    case "feetmeters":
+      result = inputValue * 0.3048;
+      break;
+	case "kilometersmeters":
+    result = inputValue * 1000;
+      break;
+    case "milesfeet":
+    result = inputValue * 5280;
+      break;
+    default:
+      alert("Conversion for these units is not yet implemented.");
+      return;
+  }
+
+  document.getElementById("result").innerHTML = "Your converted value is: " + result.toFixed(2) + " " + toUnits;
+}
+
+</script>
+
+</body>
+</html>
